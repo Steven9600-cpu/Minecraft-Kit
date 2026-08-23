@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="creative-medium" content="other" />
+  <title>Minecraft Kit — Minecraft 常用网址导航</title>
+  <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=VT323&family=Press+Start+2P&family=ZCOOL+KuaiLe&display=swap" />
+  <style>
+    /* ============ Minecraft Kit — 主题变量 ============ */
+    :root {
+      --mc-stone-dark: #1c1c1c;
+      --mc-stone: #2b2b2b;
+      --mc-stone-light: #3a3a3a;
+      --mc-dirt: #5a3d20;
+      --mc-grass-top: #6aaa3a;
+      --mc-grass-top-bright: #7ec042;
+      --mc-grass-dark: #4a7a25;
+      --mc-diamond: #4dc4c2;
+      --mc-gold: #ffb000;
+      --mc-gold-dark: #b37d00;
+      --mc-lapis: #2c5ea8;
+      --mc-redstone: #b02020;
+      --mc-emerald: #19b34d;
+
+      --mc-text: #e8e8e8;
+      --mc-text-dim: #b0b0b0;
+      --mc-text-muted: #808080;
+
+      --mc-bevel-light: rgba(255, 255, 255, 0.18);
+      --mc-bevel-dark: rgba(0, 0, 0, 0.55);
+    }
+
+    /* ============ 基础重置 ============ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "ZCOOL KuaiLe", "Microsoft YaHei", "PingFang SC", sans-serif;
+      background-color: var(--mc-stone-dark);
+      color: var(--mc-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        radial-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 1px);
+      background-size: 8px 8px, 12px 12px;
+      background-position: 0 0, 4px 4px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============ 顶部 Hero ============ */
+    .hero {
+      padding: 48px 20px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 8px;
+      background:
+        linear-gradient(to bottom, var(--mc-grass-top-bright), var(--mc-grass-top));
+      border-bottom: 3px solid #000;
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .hero-avatar {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: 3px solid #000;
+      box-shadow:
+        inset 3px 3px 0 rgba(255, 255, 255, 0.25),
+        inset -3px -3px 0 rgba(0, 0, 0, 0.35),
+        3px 3px 0 #000;
+      background-color: var(--mc-stone-light);
+      object-fit: cover;
+      image-rendering: pixelated;
+    }
+
+    .hero-title {
+      font-family: "Press Start 2P", "VT323", monospace;
+      font-size: clamp(28px, 5vw, 52px);
+      color: #fff;
+      text-shadow:
+        3px 3px 0 var(--mc-grass-dark),
+        6px 6px 0 #000;
+      letter-spacing: 2px;
+      margin: 0;
+      image-rendering: pixelated;
+    }
+
+    .hero-title .mc-emerald {
+      color: var(--mc-emerald);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--mc-text-dim);
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+
+    /* 搜索框 */
+    .search-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 18px 14px 52px;
+      font-family: "ZCOOL KuaiLe", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      color: var(--mc-text);
+      background-color: var(--mc-stone);
+      border: 3px solid #000;
+      box-shadow:
+        inset 3px 3px 0 var(--mc-bevel-light),
+        inset -3px -3px 0 var(--mc-bevel-dark);
+      outline: none;
+      caret-color: var(--mc-gold);
+    }
+
+    .search-input::placeholder {
+      color: var(--mc-text-muted);
+    }
+
+    .search-input:focus {
+      border-color: var(--mc-gold);
+      box-shadow:
+        inset 3px 3px 0 var(--mc-bevel-light),
+        inset -3px -3px 0 var(--mc-bevel-dark),
+        0 0 0 2px var(--mc-gold-dark);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    /* ============ 主内容区 ============ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* 分类标签条 */
+    .cat-rail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .cat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-family: "ZCOOL KuaiLe", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      color: var(--mc-text);
+      background-color: var(--mc-stone);
+      border: 2px solid #000;
+      box-shadow:
+        inset 2px 2px 0 var(--mc-bevel-light),
+        inset -2px -2px 0 var(--mc-bevel-dark);
+      cursor: pointer;
+      transition: transform 0.05s ease;
+      user-select: none;
+    }
+    .cat-chip:hover { background-color: var(--mc-stone-light); }
+    .cat-chip:active { transform: translate(1px, 1px); }
+    .cat-chip .dot {
+      width: 10px;
+      height: 10px;
+      border: 1.5px solid #000;
+      flex-shrink: 0;
+    }
+
+    /* 分类分区 */
+    .section {
+      margin-bottom: 48px;
+      scroll-margin-top: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--mc-stone-light);
+      position: relative;
+    }
+    .section-header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 3px;
+      background-color: #000;
+      opacity: 0.4;
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border: 3px solid #000;
+      box-shadow:
+        inset 2px 2px 0 var(--mc-bevel-light),
+        inset -2px -2px 0 var(--mc-bevel-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-title {
+      font-family: "ZCOOL KuaiLe", "Microsoft YaHei", sans-serif;
+      font-size: 24px;
+      color: #fff;
+      text-shadow: 2px 2px 0 #000;
+      letter-spacing: 1px;
+    }
+
+    .section-count {
+      font-family: "VT323", monospace;
+      font-size: 18px;
+      color: var(--mc-text-muted);
+      margin-left: auto;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .site-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 18px 16px;
+      background-color: var(--mc-stone);
+      border: 3px solid #000;
+      box-shadow:
+        inset 3px 3px 0 var(--mc-bevel-light),
+        inset -3px -3px 0 var(--mc-bevel-dark),
+        0 3px 0 #000;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, border-color 0.15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 5px;
+      background-color: var(--cat-color, var(--mc-diamond));
+      border-bottom: 2px solid #000;
+    }
+
+    .site-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--cat-color, var(--mc-diamond));
+      box-shadow:
+        inset 3px 3px 0 var(--mc-bevel-light),
+        inset -3px -3px 0 var(--mc-bevel-dark),
+        0 5px 0 #000,
+        0 0 0 2px var(--cat-color-dark, var(--mc-lapis));
+    }
+
+    .site-card:active {
+      transform: translateY(1px);
+      box-shadow:
+        inset 3px 3px 0 var(--mc-bevel-light),
+        inset -3px -3px 0 var(--mc-bevel-dark),
+        0 1px 0 #000;
+    }
+
+    .site-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .site-avatar {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background-color: var(--cat-color, var(--mc-diamond));
+      border: 2px solid #000;
+      box-shadow:
+        inset 2px 2px 0 var(--mc-bevel-light),
+        inset -2px -2px 0 var(--mc-bevel-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "VT323", monospace;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1.5px 1.5px 0 #000;
+    }
+
+    .site-title {
+      font-family: "ZCOOL KuaiLe", "Microsoft YaHei", sans-serif;
+      font-size: 20px;
+      color: #fff;
+      text-shadow: 1.5px 1.5px 0 #000;
+      line-height: 1.2;
+    }
+
+    .site-desc {
+      font-size: 15px;
+      color: var(--mc-text-dim);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .site-url {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      padding: 6px 12px;
+      font-family: "VT323", monospace;
+      font-size: 15px;
+      color: var(--mc-gold);
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 2px solid #000;
+      box-shadow:
+        inset 1.5px 1.5px 0 var(--mc-bevel-light),
+        inset -1.5px -1.5px 0 var(--mc-bevel-dark);
+      word-break: break-all;
+      align-self: flex-start;
+    }
+
+    .site-url .arrow {
+      display: inline-block;
+      transition: transform 0.1s ease;
+    }
+
+    .site-card:hover .site-url .arrow {
+      transform: translateX(3px);
+    }
+
+    /* 分类颜色变量 */
+    [data-cat="official"]   { --cat-color: var(--mc-diamond); --cat-color-dark: #1e7a78; }
+    [data-cat="launcher"]   { --cat-color: var(--mc-emerald); --cat-color-dark: #0e7a33; }
+    [data-cat="mod"]        { --cat-color: var(--mc-gold);    --cat-color-dark: var(--mc-gold-dark); }
+    [data-cat="wiki"]       { --cat-color: var(--mc-lapis);   --cat-color-dark: #1a3d6e; }
+    [data-cat="skin"]       { --cat-color: var(--mc-redstone);--cat-color-dark: #7a1515; }
+    [data-cat="server"]     { --cat-color: var(--mc-emerald); --cat-color-dark: #0e7a33; }
+    [data-cat="community"]  { --cat-color: var(--mc-gold);    --cat-color-dark: var(--mc-gold-dark); }
+    [data-cat="tool"]       { --cat-color: var(--mc-diamond); --cat-color-dark: #1e7a78; }
+
+    /* 无搜索结果 */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--mc-text-muted);
+    }
+    .empty-state.visible { display: block; }
+    .empty-state .icon {
+      font-family: "VT323", monospace;
+      font-size: 64px;
+      margin-bottom: 12px;
+      color: var(--mc-gold-dark);
+    }
+    .empty-state p { font-size: 18px; }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      padding: 24px 20px 40px;
+      color: var(--mc-text-muted);
+      font-size: 14px;
+      border-top: 3px solid var(--mc-stone-light);
+      position: relative;
+    }
+    .footer::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -6px;
+      height: 3px;
+      background-color: #000;
+      opacity: 0.3;
+    }
+    .footer .diamond { color: var(--mc-diamond); }
+
+    /* ============ 响应式 ============ */
+    @media (max-width: 640px) {
+      .hero { padding: 32px 16px 24px; }
+      .hero-title { font-size: 28px; letter-spacing: 1px; }
+      .hero-sub { font-size: 15px; }
+      .container { padding: 0 14px 40px; }
+      .card-grid { grid-template-columns: 1fr; gap: 14px; }
+      .section-title { font-size: 20px; }
+      .cat-rail { gap: 8px; }
+      .cat-chip { padding: 6px 12px; font-size: 14px; }
+      .hero-brand { gap: 12px; }
+      .hero-avatar {
+        width: 42px;
+        height: 42px;
+        border-width: 2.5px;
+        box-shadow:
+          inset 2px 2px 0 rgba(255, 255, 255, 0.25),
+          inset -2px -2px 0 rgba(0, 0, 0, 0.35),
+          2px 2px 0 #000;
+      }
+    }
+
+    /* 减少动效偏好 */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-brand">
+      <img class="hero-avatar" src="https://aka.doubaocdn.com/s/2TrNo7UZib" alt="用户头像" />
+      <h1 class="hero-title">
+        MINECRAFT <span class="mc-emerald">KIT</span>
+      </h1>
+    </div>
+    <p class="hero-sub">方块世界的工具箱 · 常用站点一站直达</p>
+
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="搜索网站名称或介绍…"
+        autocomplete="off"
+        aria-label="搜索网站"
+      />
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="cat-rail" aria-label="分类导航">
+      <button class="cat-chip" data-jump="official">
+        <span class="dot" style="background: var(--mc-diamond);"></span>官方
+      </button>
+      <button class="cat-chip" data-jump="launcher">
+        <span class="dot" style="background: var(--mc-emerald);"></span>启动器
+      </button>
+      <button class="cat-chip" data-jump="mod">
+        <span class="dot" style="background: var(--mc-gold);"></span>模组与资源
+      </button>
+      <button class="cat-chip" data-jump="wiki">
+        <span class="dot" style="background: var(--mc-lapis);"></span>百科与 Wiki
+      </button>
+      <button class="cat-chip" data-jump="skin">
+        <span class="dot" style="background: var(--mc-redstone);"></span>皮肤与头像
+      </button>
+      <button class="cat-chip" data-jump="server">
+        <span class="dot" style="background: var(--mc-emerald);"></span>服务器
+      </button>
+      <button class="cat-chip" data-jump="community">
+        <span class="dot" style="background: var(--mc-gold);"></span>社区与论坛
+      </button>
+      <button class="cat-chip" data-jump="tool">
+        <span class="dot" style="background: var(--mc-diamond);"></span>实用工具
+      </button>
+    </nav>
+
+    <!-- 官方 -->
+    <section class="section" id="cat_official" data-cat="official">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-diamond);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <polygon points="12,2 22,10 12,22 2,10"></polygon>
+            <line x1="2" y1="10" x2="22" y2="10"></line>
+            <line x1="12" y1="2" x2="8" y2="10"></line>
+            <line x1="12" y1="2" x2="16" y2="10"></line>
+            <line x1="8" y1="10" x2="12" y2="22"></line>
+            <line x1="16" y1="10" x2="12" y2="22"></line>
+          </svg>
+        </div>
+        <h2 class="section-title">官方</h2>
+        <span class="section-count">2 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="https://www.minecraft.net/zh-hans" target="_blank" rel="noopener noreferrer"
+           data-name="Minecraft 官网 mojang" data-desc="Mojang 官方网站，购买游戏、查看更新与新闻">
+          <div class="site-name">
+            <div class="site-avatar">MC</div>
+            <div class="site-title">Minecraft 官网</div>
+          </div>
+          <p class="site-desc">Mojang 官方网站，购买游戏、查看更新与新闻</p>
+          <span class="site-url">minecraft.net/zh-hans <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="http://mc.163.com" target="_blank" rel="noopener noreferrer"
+           data-name="我的世界中国版 网易" data-desc="网易代理的 Minecraft 中国版官网">
+          <div class="site-name">
+            <div class="site-avatar">网</div>
+            <div class="site-title">我的世界中国版</div>
+          </div>
+          <p class="site-desc">网易代理的 Minecraft 中国版官网</p>
+          <span class="site-url">mc.163.com <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 启动器 -->
+    <section class="section" id="cat_launcher" data-cat="launcher">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-emerald);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <polygon points="8,5 19,12 8,19"></polygon>
+          </svg>
+        </div>
+        <h2 class="section-title">启动器</h2>
+        <span class="section-count">2 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="https://pcl2.cc" target="_blank" rel="noopener noreferrer"
+           data-name="PCL2 Plain Craft Launcher 2 龙腾猫跃" data-desc="龙腾猫跃开发的开源免费 Java 版启动器，国内高速下载、智能模组管理">
+          <div class="site-name">
+            <div class="site-avatar">P2</div>
+            <div class="site-title">PCL2</div>
+          </div>
+          <p class="site-desc">龙腾猫跃开发的开源免费 Java 版启动器，国内高速下载、智能模组管理</p>
+          <span class="site-url">pcl2.cc <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://hmcl.huangyuhui.net" target="_blank" rel="noopener noreferrer"
+           data-name="HMCL Hello Minecraft Launcher" data-desc="跨平台开源 Minecraft 启动器，支持正版与离线登录">
+          <div class="site-name">
+            <div class="site-avatar">H</div>
+            <div class="site-title">HMCL</div>
+          </div>
+          <p class="site-desc">跨平台开源 Minecraft 启动器，支持正版与离线登录</p>
+          <span class="site-url">hmcl.huangyuhui.net <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 模组与资源 -->
+    <section class="section" id="cat_mod" data-cat="mod">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-gold);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <rect x="3" y="7" width="18" height="14"></rect>
+            <rect x="3" y="4" width="18" height="5"></rect>
+            <line x1="12" y1="7" x2="12" y2="21"></line>
+            <rect x="10" y="12" width="4" height="3"></rect>
+          </svg>
+        </div>
+        <h2 class="section-title">模组与资源</h2>
+        <span class="section-count">4 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="https://www.mcmod.cn" target="_blank" rel="noopener noreferrer"
+           data-name="MC百科 mcmod 模组数据库" data-desc="最大中文 MOD 数据库，模组、整合包、材质包百科与下载索引">
+          <div class="site-name">
+            <div class="site-avatar">MC</div>
+            <div class="site-title">MC 百科</div>
+          </div>
+          <p class="site-desc">最大中文 MOD 数据库，模组、整合包、材质包百科与下载索引</p>
+          <span class="site-url">mcmod.cn <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://www.curseforge.com/minecraft" target="_blank" rel="noopener noreferrer"
+           data-name="CurseForge 模组 资源包 地图" data-desc="全球最大的 Minecraft 模组、资源包、地图下载平台">
+          <div class="site-name">
+            <div class="site-avatar">CF</div>
+            <div class="site-title">CurseForge</div>
+          </div>
+          <p class="site-desc">全球最大的 Minecraft 模组、资源包、地图下载平台</p>
+          <span class="site-url">curseforge.com/minecraft <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://modrinth.com" target="_blank" rel="noopener noreferrer"
+           data-name="Modrinth 开源 社区 mod" data-desc="新兴开源 Minecraft 资源社区，界面现代、下载速度快">
+          <div class="site-name">
+            <div class="site-avatar">MR</div>
+            <div class="site-title">Modrinth</div>
+          </div>
+          <p class="site-desc">新兴开源 Minecraft 资源社区，界面现代、下载速度快</p>
+          <span class="site-url">modrinth.com <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://www.planetminecraft.com" target="_blank" rel="noopener noreferrer"
+           data-name="Planet Minecraft PMC 社区" data-desc="国际知名 MC 社区，地图、皮肤、模组、材质包一站齐全">
+          <div class="site-name">
+            <div class="site-avatar">PM</div>
+            <div class="site-title">Planet Minecraft</div>
+          </div>
+          <p class="site-desc">国际知名 MC 社区，地图、皮肤、模组、材质包一站齐全</p>
+          <span class="site-url">planetminecraft.com <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 百科与 Wiki -->
+    <section class="section" id="cat_wiki" data-cat="wiki">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-lapis);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <path d="M4 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"></path>
+            <path d="M20 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"></path>
+          </svg>
+        </div>
+        <h2 class="section-title">百科与 Wiki</h2>
+        <span class="section-count">2 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="https://minecraft.wiki/w/Minecraft_Wiki?lang=zh" target="_blank" rel="noopener noreferrer"
+           data-name="Minecraft Wiki 中文 百科" data-desc="最权威的 Minecraft 百科，方块、物品、机制、指令全收录">
+          <div class="site-name">
+            <div class="site-avatar">中</div>
+            <div class="site-title">Minecraft Wiki（中文）</div>
+          </div>
+          <p class="site-desc">最权威的 Minecraft 百科，方块、物品、机制、指令全收录</p>
+          <span class="site-url">minecraft.wiki (zh) <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://minecraft.wiki" target="_blank" rel="noopener noreferrer"
+           data-name="Minecraft Wiki 英文 english" data-desc="英文原版 Wiki，内容更新最快">
+          <div class="site-name">
+            <div class="site-avatar">EN</div>
+            <div class="site-title">Minecraft Wiki（英文）</div>
+          </div>
+          <p class="site-desc">英文原版 Wiki，内容更新最快</p>
+          <span class="site-url">minecraft.wiki <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 皮肤与头像 -->
+    <section class="section" id="cat_skin" data-cat="skin">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-redstone);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <rect x="7" y="4" width="10" height="10"></rect>
+            <rect x="5" y="14" width="14" height="7"></rect>
+            <rect x="9" y="7" width="2" height="2" fill="#000"></rect>
+            <rect x="13" y="7" width="2" height="2" fill="#000"></rect>
+          </svg>
+        </div>
+        <h2 class="section-title">皮肤与头像</h2>
+        <span class="section-count">3 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="https://namemc.com" target="_blank" rel="noopener noreferrer"
+           data-name="NameMC 皮肤 查询 历史ID" data-desc="皮肤查询与下载，查看玩家历史 ID 和皮肤">
+          <div class="site-name">
+            <div class="site-avatar">NM</div>
+            <div class="site-title">NameMC</div>
+          </div>
+          <p class="site-desc">皮肤查询与下载，查看玩家历史 ID 和皮肤</p>
+          <span class="site-url">namemc.com <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://mccag.cn" target="_blank" rel="noopener noreferrer"
+           data-name="MCCAG 可爱头像生成器" data-desc="Minecraft 可爱头像生成器，支持多种风格，通过正版 ID 或皮肤文件生成头像">
+          <div class="site-name">
+            <div class="site-avatar">CA</div>
+            <div class="site-title">MCCAG</div>
+          </div>
+          <p class="site-desc">Minecraft 可爱头像生成器，支持多种风格，通过正版 ID 或皮肤文件生成头像</p>
+          <span class="site-url">mccag.cn <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://littleskin.cn" target="_blank" rel="noopener noreferrer"
+           data-name="LittleSkin 皮肤站 Yggdrasil" data-desc="国内开源皮肤站，自定义皮肤和披风，支持 Yggdrasil 外置登录">
+          <div class="site-name">
+            <div class="site-avatar">LS</div>
+            <div class="site-title">LittleSkin</div>
+          </div>
+          <p class="site-desc">国内开源皮肤站，自定义皮肤和披风，支持 Yggdrasil 外置登录</p>
+          <span class="site-url">littleskin.cn <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 服务器 -->
+    <section class="section" id="cat_server" data-cat="server">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-emerald);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="7"></rect>
+            <rect x="3" y="13" width="18" height="7"></rect>
+            <circle cx="7" cy="7.5" r="1.2" fill="#000"></circle>
+            <circle cx="7" cy="16.5" r="1.2" fill="#000"></circle>
+          </svg>
+        </div>
+        <h2 class="section-title">服务器</h2>
+        <span class="section-count">3 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="https://hypixel.net" target="_blank" rel="noopener noreferrer"
+           data-name="Hypixel 小游戏 起床战争 空岛" data-desc="全球最知名的 Java 版小游戏服务器，起床战争、空岛战争等">
+          <div class="site-name">
+            <div class="site-avatar">HP</div>
+            <div class="site-title">Hypixel</div>
+          </div>
+          <p class="site-desc">全球最知名的 Java 版小游戏服务器，起床战争、空岛战争等</p>
+          <span class="site-url">hypixel.net <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://findmcserver.com" target="_blank" rel="noopener noreferrer"
+           data-name="找服玩 findmcserver 服务器列表" data-desc="查找独特友好的 Minecraft 服务器">
+          <div class="site-name">
+            <div class="site-avatar">找</div>
+            <div class="site-title">找服玩</div>
+          </div>
+          <p class="site-desc">查找独特友好的 Minecraft 服务器</p>
+          <span class="site-url">findmcserver.com <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://mclists.cn" target="_blank" rel="noopener noreferrer"
+           data-name="MClists 服务器推荐列表 国内" data-desc="面向中国大陆的优质服务器推荐列表">
+          <div class="site-name">
+            <div class="site-avatar">ML</div>
+            <div class="site-title">MClists</div>
+          </div>
+          <p class="site-desc">面向中国大陆的优质服务器推荐列表</p>
+          <span class="site-url">mclists.cn <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 社区与论坛 -->
+    <section class="section" id="cat_community" data-cat="community">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-gold);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <path d="M4 5h16v10H8l-4 4z"></path>
+          </svg>
+        </div>
+        <h2 class="section-title">社区与论坛</h2>
+        <span class="section-count">4 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="https://www.mcbbs.co" target="_blank" rel="noopener noreferrer"
+           data-name="MCBBS 纪念版 中文论坛" data-desc="原 Minecraft 中文论坛纪念版，资源与交流社区">
+          <div class="site-name">
+            <div class="site-avatar">MB</div>
+            <div class="site-title">MCBBS 纪念版</div>
+          </div>
+          <p class="site-desc">原 Minecraft 中文论坛纪念版，资源与交流社区</p>
+          <span class="site-url">mcbbs.co <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="http://www.minebbs.com" target="_blank" rel="noopener noreferrer"
+           data-name="MineBBS 中文社区 论坛" data-desc="Minecraft 中文社区论坛，资源分享与讨论">
+          <div class="site-name">
+            <div class="site-avatar">Mi</div>
+            <div class="site-title">MineBBS</div>
+          </div>
+          <p class="site-desc">Minecraft 中文社区论坛，资源分享与讨论</p>
+          <span class="site-url">minebbs.com <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://klpbbs.com" target="_blank" rel="noopener noreferrer"
+           data-name="苦力怕论坛 klpbbs 国内社区" data-desc="国内活跃的 Minecraft 玩家社区">
+          <div class="site-name">
+            <div class="site-avatar">苦</div>
+            <div class="site-title">苦力怕论坛</div>
+          </div>
+          <p class="site-desc">国内活跃的 Minecraft 玩家社区</p>
+          <span class="site-url">klpbbs.com <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://www.nexusmc.cn" target="_blank" rel="noopener noreferrer"
+           data-name="NexusMC 综合社区 资源分享" data-desc="Minecraft 中文综合社区，分享资源、交流技术">
+          <div class="site-name">
+            <div class="site-avatar">NX</div>
+            <div class="site-title">NexusMC</div>
+          </div>
+          <p class="site-desc">Minecraft 中文综合社区，分享资源、交流技术</p>
+          <span class="site-url">nexusmc.cn <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 实用工具 -->
+    <section class="section" id="cat_tool" data-cat="tool">
+      <div class="section-header">
+        <div class="section-icon" style="background-color: var(--mc-diamond);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5">
+            <path d="M4 4l5 5 1-1 6 6-1 1 5 5 3-3-8-8 1-1-5-5z"></path>
+            <line x1="12" y1="12" x2="17" y2="17"></line>
+          </svg>
+        </div>
+        <h2 class="section-title">实用工具</h2>
+        <span class="section-count">3 个站点</span>
+      </div>
+      <div class="card-grid">
+        <a class="site-card" href="http://www.minecraftxz.com" target="_blank" rel="noopener noreferrer"
+           data-name="Minecraft中文下载站 游戏版本 客户端" data-desc="游戏版本、客户端下载">
+          <div class="site-name">
+            <div class="site-avatar">下</div>
+            <div class="site-title">Minecraft 中文下载站</div>
+          </div>
+          <p class="site-desc">游戏版本、客户端下载</p>
+          <span class="site-url">minecraftxz.com <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://www.chunkbase.com" target="_blank" rel="noopener noreferrer"
+           data-name="Chunkbase 种子地图 查看器 村庄 要塞" data-desc="种子地图查看器，定位村庄、要塞、神殿等结构">
+          <div class="site-name">
+            <div class="site-avatar">CB</div>
+            <div class="site-title">Chunkbase</div>
+          </div>
+          <p class="site-desc">种子地图查看器，定位村庄、要塞、神殿等结构</p>
+          <span class="site-url">chunkbase.com <span class="arrow">→</span></span>
+        </a>
+        <a class="site-card" href="https://www.plotz.co.uk" target="_blank" rel="noopener noreferrer"
+           data-name="Plotz 建筑结构 生成器 球体 椭圆" data-desc="在线球体、椭圆、塔等建筑结构生成器，辅助建造">
+          <div class="site-name">
+            <div class="site-avatar">Pl</div>
+            <div class="site-title">Plotz</div>
+          </div>
+          <p class="site-desc">在线球体、椭圆、塔等建筑结构生成器，辅助建造</p>
+          <span class="site-url">plotz.co.uk <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="empty-state" id="emptyState">
+      <div class="icon">?</div>
+      <p>没找到匹配的站点，换个关键词试试？</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>用 <span class="diamond">◆</span> 方块搭建 · Minecraft Kit · 非官方导航站</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const sections = document.querySelectorAll('.section');
+    const emptyState = document.getElementById('emptyState');
+
+    function filterSites(query) {
+      const q = query.trim().toLowerCase();
+      let visibleTotal = 0;
+
+      sections.forEach(section => {
+        const cards = section.querySelectorAll('.site-card');
+        let sectionVisible = 0;
+
+        cards.forEach(card => {
+          const name = (card.dataset.name || '').toLowerCase();
+          const desc = (card.dataset.desc || '').toLowerCase();
+          const match = !q || name.includes(q) || desc.includes(q);
+          card.style.display = match ? '' : 'none';
+          if (match) sectionVisible++;
+        });
+
+        section.style.display = sectionVisible > 0 ? '' : 'none';
+        visibleTotal += sectionVisible;
+      });
+
+      emptyState.classList.toggle('visible', visibleTotal === 0);
+    }
+
+    let searchTimer;
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => filterSites(e.target.value), 120);
+    });
+
+    document.querySelectorAll('.cat-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const cat = chip.dataset.jump;
+        const target = document.getElementById('cat_' + cat);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      if (e.key === 'Escape' && document.activeElement === searchInput) {
+        searchInput.value = '';
+        filterSites('');
+        searchInput.blur();
+      }
+    });
+  </script>
+</body>
+</html>
